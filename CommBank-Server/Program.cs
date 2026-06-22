@@ -1,6 +1,9 @@
-﻿using CommBank.Models;
+﻿using System.Text.Json;
+using CommBank.Models;
 using CommBank.Services;
 using MongoDB.Driver;
+using System.Text.Json;
+using Tag = CommBank.Models.Tag;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -48,6 +51,32 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+
+List<Account>? accounts = JsonSerializer.Deserialize<List<Account>>( "../Data/Accounts.json");
+List<Goal>? goals = JsonSerializer.Deserialize<List<Goal>>( "../Data/Goals.json");
+List<Tag>? tags = JsonSerializer.Deserialize<List<Tag>>( "../Data/Tags.json");
+List<Transaction>? transactions = JsonSerializer.Deserialize<List<Transaction>>( "../Data/Transactions.json");
+List<User>? users = JsonSerializer.Deserialize<List<User>>( "../Data/Users.json");
+
+foreach(Account account in accounts){
+    accountsService.CreateAsync(account);
+}
+foreach(Goal goal in goals)
+{
+    goalsService.CreateAsync(goal);
+}
+foreach(Tag tag in tags){
+    tagsService.CreateAsync(tag);
+}
+foreach(Transaction transaction in transactions)
+{
+    transactionsService.CreateAsync(transaction);
+}
+foreach(User user in users)
+{
+    usersService.CreateAsync(user);
+}
 
 app.Run();
 
