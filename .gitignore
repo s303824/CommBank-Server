@@ -1,6 +1,3 @@
-# Secrets
-CommBank-Server/Secrets.json
-
 # globs
 Makefile.in
 *.userprefs
@@ -408,3 +405,4 @@ ASALocalRun/
 .localhistory/
 
 
+CommBank-Server/Secrets.json
