@@ -1,5 +1,5 @@
 # Secrets
-CommBank-Server\Secrets.json
+CommBank-Server/Secrets.json
 
 # globs
 Makefile.in
